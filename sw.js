@@ -1,23 +1,23 @@
-// sw.js
-const CACHE_NAME = 'tiles-cache-v1';
+const CACHE_NAME = 'osm-tiles-cache-v2';
 
-self.addEventListener('install', () => {
-  // active immédiatement ce SW
+self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  // Ne mettre en cache que les tuiles Carto
-  if (url.origin === 'https://b.basemaps.cartocdn.com') {
+  if (url.origin === 'https://a.tile.openstreetmap.org' || 
+      url.origin === 'https://b.tile.openstreetmap.org' || 
+      url.origin === 'https://c.tile.openstreetmap.org') {
     event.respondWith(
-      caches.open(CACHE_NAME).then(cache =>
-        cache.match(event.request).then(cached =>
-          cached || fetch(event.request).then(resp => {
-            cache.put(event.request, resp.clone());
-            return resp;
-          })
-        )
+      caches.open(CACHE_NAME).then((cache) =>
+        cache.match(event.request).then((cached) => {
+          const fetchPromise = fetch(event.request).then((response) => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+          return cached || fetchPromise;
+        })
       )
     );
   }
