@@ -1,3 +1,4 @@
+/* === Styles généraux === */
 html, body {
   margin: 0;
   padding: 0;
@@ -5,6 +6,11 @@ html, body {
   width: 100%;
 }
 
+#map {
+  background-color: #e0e0e0; /* Couleur de fond */
+  background-image: url('placeholder-map.png'); /* Image statique de la carte */
+  background-size: cover;
+}
 
 .leaflet-container {
   font: 15px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -14,9 +20,15 @@ h3, h2 {
   text-align: center;
 }
 
-
 .leaflet-popup-content h3 {
   text-align: left;
+}
+
+/* Surcharge des styles Leaflet pour améliorer la lisibilité */
+.leaflet-container .leaflet-control-attribution,
+.leaflet-container .leaflet-control-scale {
+  font-size: 14px; /* Augmentez la taille de la police à 14px */
+  line-height: 1.4; /* Ajustez l'espacement pour une meilleure lisibilité */
 }
 
 /* === Tooltip personnalisé === */
