@@ -21,18 +21,30 @@
       right: 0;
       bottom: 0;
     }
-    /* Autres règles critiques… */
+    .leaflet-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .leaflet-tile {
+      position: absolute;
+      width: 256px;
+      height: 256px;
+      visibility: hidden;
+    }
+    .leaflet-tile-loaded {
+      visibility: inherit;
+    }
   </style>
 
-  <!-- Leaflet CSS loaded immediately -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css"
-  />
+  <!-- Leaflet CSS -->
+<link rel="preload" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"></noscript>
+
+<!-- Leaflet Fullscreen CSS -->
+<link rel="preload" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css"></noscript>
 
   <!-- Preload custom CSS -->
   <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
