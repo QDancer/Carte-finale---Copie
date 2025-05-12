@@ -1,15 +1,8 @@
-/* === Styles généraux === */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-}
-
-#map {
-  background-color: #e0e0e0; /* Couleur de fond */
-  background-image: url('placeholder-map.png'); /* Image statique de la carte */
-  background-size: cover;
 }
 
 
