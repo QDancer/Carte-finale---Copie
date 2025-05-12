@@ -1,0 +1,262 @@
+/* === Styles généraux === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+.leaflet-container {
+  font: 15px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+h3, h2 {
+  text-align: center;
+}
+
+
+.leaflet-popup-content h3 {
+  text-align: left;
+}
+
+/* === Tooltip personnalisé === */
+.leaflet-popup-content-wrapper {
+  color: rgb(0, 0, 0);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+/* Assurez-vous que les images dans le tooltip s'adaptent à la largeur du conteneur */
+#fullscreen-tooltip img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centrer l'image horizontalement */
+}
+
+/* Conteneur de la légende */
+.info.legend {
+  background: white;
+  color: black;
+  padding: 10px;
+  line-height: 1.6;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+/* Icônes de couleur dans la légende */
+.info.legend i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+
+/* Bouton pour afficher/masquer la légende */
+#legend-toggle {
+  background-color: white;
+  border: 1px solid gray;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Ajustements pour les écrans mobiles */
+@media (max-width: 768px) {
+  #legend-toggle {
+    font-size: 12px; /* Réduisez la taille de la police */
+    padding: 6px 10px; /* Réduisez l'espacement interne */
+    width: 100%; /* Le bouton occupe toute la largeur */
+    box-sizing: border-box; /* Inclut les bordures et le padding dans la largeur */
+  }
+}
+
+#legend-content {
+  margin-top: 4px;
+}
+
+/* === Icônes === */
+.danger-marker-icon, .attention-marker-icon {
+  filter: drop-shadow(0 0 2px white) drop-shadow(0 0 2px white);
+}
+
+.flag-icon {
+  vertical-align: middle;
+  margin-right: 6px;
+  width: 24px;
+  height: auto;
+}
+
+
+/* === Tooltip fullscreen === */
+#fullscreen-tooltip {
+  position: fixed;
+  display: none;
+  background: white;
+  border: 3px solid gray;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  overflow: auto;
+  padding: 20px;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+
+@media (min-width: 768px) {
+  #fullscreen-tooltip {
+    width: 50%;
+    height: 70%;
+    top: 15%;
+    left: 20%;
+  }
+}
+
+/* === Bouton "fermer" dans le tooltip fullscreen === */
+#close-tooltip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2100;
+  background: #020202;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+/* boutons voyager en avion/train/bus
+/* 1) Variables – pratique pour changer le thème rapidement */
+:root {
+  --btn-bg:       #1461ff;   /* bleu primaire */
+  --btn-bg-hover: #0d46c7;
+  --btn-text:     #ffffff;
+  --btn-radius:   0.6rem;
+  --btn-shadow:   0 2px 4px rgba(0,0,0,.1);
+}
+
+/* 2) Style du lien comme un vrai bouton */
+.btn {
+  display:inline-flex;
+  align-items:center;              /* si tu ajoutes une icône SVG, ça l’aligne */
+  justify-content: center;
+  gap:0.5rem;                      /* espace entre icône et texte */
+  padding:0.75rem 1.25rem;
+  background:var(--btn-bg);
+  color:var(--btn-text);
+  font:600 1rem/1 "Inter","Segoe UI",sans-serif;
+  text-decoration:none;
+  border-radius:var(--btn-radius);
+  box-shadow:var(--btn-shadow);
+  transition:
+      background .2s ease,
+      transform  .15s ease,
+      box-shadow .2s ease;
+}
+
+/* 3) Effet hover / focus */
+.btn:hover,
+.btn:focus-visible {
+  background:var(--btn-bg-hover);
+  box-shadow:0 6px 12px rgba(0,0,0,.15);
+  transform:translateY(-2px);      /* léger lift */
+  outline:none;                    /* le -focus ci-dessous gère l’accessibilité */
+}
+
+/* 4) Anneau d’accessibilité clavier */
+.btn:focus-visible {
+  outline:2px solid var(--btn-bg-hover);
+  outline-offset:2px;
+}
+
+/* 5) Optionnel : état “disabled” ou “loading” */
+.btn[aria-disabled="true"],
+.btn.is-loading {
+  opacity:.55;
+  pointer-events:none;
+  transform:none;
+}
+
+/* Centrer les trois boutons voyages */
+.btn-group {
+  display: flex;               /* rangée de flex-items */
+  flex-wrap: wrap;             /* passe à la ligne si besoin */
+  justify-content: center;     /* centre horizontalement */
+  gap: 0.5rem;                 /* espace entre les boutons */
+}
+
+/* Optionnel : si vous voulez réduire la largeur des boutons */
+.btn-group .btn {
+  flex: 1 1 auto;              /* chacun prend un espace égal */
+  max-width: 20%;              /* ou la taille max que vous voulez */
+}
+
+
+/* === ADAPTATIONS POUR MOBILE === */
+
+body.is-mobile .info.legend {
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+/* fullscreen tooltips */ 
+body.is-mobile #fullscreen-tooltip {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 10px;
+  font-size: 1.2em;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 2000;
+}
+
+
+ /* Boutons fullscreen tooltips */
+body.is-mobile {
+  --btn-bg:       #0a84ff;      /* bleu un peu plus vif */
+  --btn-bg-hover: #0060d0;
+  --btn-radius:   0.45rem;      /* coins plus serrés */
+
+  a.btn,
+  button.btn {
+    display: block;
+    width: 40%;            
+    margin: 0 auto 12px; /* auto à gauche/droite  ⇒ centre */
+  }
+  
+}
+
+body.is-mobile .leaflet-container .leaflet-popup-content{
+  margin:0;
+}
+
+body.is-mobile .leaflet-popup-content-wrapper {
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+body.is-mobile .leaflet-popup-content h3 {
+  text-align: left;
+}

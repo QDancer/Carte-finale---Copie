@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carte interactive pour voyager avec votre cigarette électronique.">
+  <title>Voyagez avec votre cigarette électronique</title>
+
+  <!-- Critical CSS inline -->
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    /* Autres règles critiques… */
+  </style>
+
+  <!-- Leaflet CSS loaded immediately -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css"
+  />
+
+  <!-- Preload custom CSS -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+  <!-- Prefetch tuile LCP (tile initiale approximative) -->
+<link rel="prefetch"
+      href="https://b.basemaps.cartocdn.com/light_all/4/4/8@2x.png"
+      as="image"
+      crossorigin="anonymous">
+</head>
+<body>
+  <noscript>
+    <p style="color: red; text-align: center; font-weight: bold;">
+      Cette carte interactive nécessite JavaScript pour fonctionner. Veuillez activer JavaScript dans votre navigateur.
+    </p>
+  </noscript>
+
+  <div id="map"></div>
+
+  <div id="fullscreen-tooltip" style="display: none;">
+    <button id="close-tooltip">×</button>
+    <div class="tooltip-container">
+      <div id="tooltip-content"></div>
+      <h3>Préparez votre voyage !</h3>
+      <div class="btn-group">
+        <a href="https://fr.vapingpost.com/voyager-en-avion-avec-sa-cigarette-electronique/" id="bouton-avion" class="btn">Je voyage en avion</a>
+        <a href="https://fr.vapingpost.com/voyager-en-train-avec-sa-cigarette-electronique/" id="bouton-train" class="btn">Je voyage en train</a>
+        <a href="https://fr.vapingpost.com/voyager-en-bus-avec-sa-cigarette-electronique/" id="bouton-bus" class="btn">Je voyage en bus</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Worker registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker enregistré'))
+        .catch(err => console.warn('Erreur SW', err));
+    }
+  </script>
+
+  <!-- Bundle JS unique -->
+  <script src="dist/bundle.min.js" defer></script>
+</body>
+</html>

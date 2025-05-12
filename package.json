@@ -1,0 +1,22 @@
+{
+  "name": "carte-voyage",
+  "version": "1.0.0",
+  "description": "Carte interactive optimisée",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --watch",
+    "serve": "serve ."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "babel-loader": "^10.0.0",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "leaflet-fullscreen": "^1.0.2"
+  }
+}
