@@ -6,11 +6,6 @@ html, body {
   width: 100%;
 }
 
-#map {
-  background-color: #e0e0e0; /* Couleur de fond */
-  background-image: url('placeholder-map.png'); /* Image statique de la carte */
-  background-size: cover;
-}
 
 .leaflet-container {
   font: 15px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
